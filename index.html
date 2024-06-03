@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Mouse Charge</title>
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="script-src 'self' 'unsafe-inline';"
+    />
+    <style>
+      body {
+        position: relative;
+        margin: 0;
+        color: #fff;
+        font-family: sans-serif;
+        font-size: 60px;
+        min-height: 100dvh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .titleBar {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 32px;
+        -webkit-app-region: drag;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="titleBar"></div>
+    <div id="charge"></div>
+  </body>
+</html>
