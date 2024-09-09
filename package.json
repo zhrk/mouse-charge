@@ -22,6 +22,7 @@
     "files": [
       "main.js",
       "preload.js",
+      "getCharge.js",
       "package.json",
       "index.html"
     ],
