@@ -18,6 +18,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
+        overflow: hidden;
       }
 
       .titleBar {
@@ -34,4 +35,17 @@
     <div class="titleBar"></div>
     <div id="charge"></div>
   </body>
+  <script>
+    const getCharge = async () => {
+      const charge = await window.electron.getCharge();
+
+      document.getElementById("charge").innerText = `${charge}%`;
+    };
+
+    getCharge();
+
+    setInterval(() => {
+      getCharge();
+    }, 60 * 1000);
+  </script>
 </html>

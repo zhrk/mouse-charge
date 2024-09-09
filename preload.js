@@ -1,7 +1,5 @@
-const { ipcRenderer } = require("electron");
+const { ipcRenderer, contextBridge } = require("electron");
 
-window.addEventListener("DOMContentLoaded", () => {
-  ipcRenderer.on("getCharge", (_event, value) => {
-    document.getElementById("charge").innerText = `${value}%`;
-  });
+contextBridge.exposeInMainWorld("electron", {
+  getCharge: () => ipcRenderer.invoke("getCharge"),
 });
