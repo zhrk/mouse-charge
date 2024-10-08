@@ -13,6 +13,7 @@ function createWindow() {
   win = new BrowserWindow({
     width: 200,
     height: 200,
+    alwaysOnTop: true,
     webPreferences: {
       preload: path.join(__dirname, "preload.js"),
     },
