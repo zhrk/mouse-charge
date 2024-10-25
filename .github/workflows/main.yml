@@ -1,5 +1,5 @@
-name: Build electron app
-on: [push]
+name: Build Electron App
+on: push
 jobs:
   build:
     runs-on: windows-latest
@@ -8,7 +8,9 @@ jobs:
       - uses: actions/setup-node@v4.0.2
         with:
           registry-url: "https://registry.npmjs.org"
-      - run: cat ./package.json
-      - uses: samuelmeuli/action-electron-builder@v1.6.0
+      - run: npm i
+      - run: npm run build
+      - uses: actions/upload-artifact@v4.4.3
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          name: dist
+          path: dist/*.exe
