@@ -8,10 +8,9 @@ jobs:
       - uses: actions/setup-node@v4.0.2
         with:
           registry-url: "https://registry.npmjs.org"
-      - run: cat ./package.json
       - run: npm ci
       - run: npm run build
       - uses: actions/upload-artifact@v4.4.3
         with:
           name: dist
-          path: dist/*.yml
+          path: dist/*.exe

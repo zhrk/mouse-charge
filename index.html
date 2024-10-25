@@ -49,10 +49,12 @@
       if (charge === "100.0") success.play();
     };
 
-    getCharge();
-
-    setInterval(() => {
+    success.addEventListener("canplay", () => {
       getCharge();
-    }, 60 * 1000);
+
+      setInterval(() => {
+        getCharge();
+      }, 60 * 1000);
+    });
   </script>
 </html>
