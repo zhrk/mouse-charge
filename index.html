@@ -34,27 +34,18 @@
   <body>
     <div class="titleBar"></div>
     <div id="charge"></div>
-    <audio src="./success.mp3" id="success"></audio>
   </body>
   <script>
-    const success = document.getElementById("success");
-
-    success.volume = 0.2;
-
     const getCharge = async () => {
       const charge = await window.electron.getCharge();
 
       document.getElementById("charge").innerText = `${charge}%`;
-
-      if (charge === "100.0") success.play();
     };
 
-    success.addEventListener("canplay", () => {
-      getCharge();
+    getCharge();
 
-      setInterval(() => {
-        getCharge();
-      }, 60 * 1000);
-    });
+    setInterval(() => {
+      getCharge();
+    }, 60 * 1000);
   </script>
 </html>
