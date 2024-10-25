@@ -10,3 +10,5 @@ jobs:
           registry-url: "https://registry.npmjs.org"
       - run: cat ./package.json
       - uses: samuelmeuli/action-electron-builder@v1.6.0
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
