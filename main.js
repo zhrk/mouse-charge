@@ -1,4 +1,4 @@
-const { app, BrowserWindow, ipcMain } = require("electron");
+const { app, BrowserWindow, ipcMain, Notification } = require("electron");
 const path = require("node:path");
 const getCharge = require("./getCharge");
 
@@ -33,6 +33,11 @@ function createWindow() {
 app.whenReady().then(() => {
   createWindow();
 
+  const notification = new Notification({
+    title: "Mouse charge",
+    body: "Charging finished",
+  });
+
   app.on("activate", () => {
     if (BrowserWindow.getAllWindows().length === 0) {
       createWindow();
@@ -40,6 +45,7 @@ app.whenReady().then(() => {
   });
 
   ipcMain.handle("getCharge", getCharge);
+  ipcMain.handle("notify", () => notification.show());
 });
 
 app.on("window-all-closed", () => {

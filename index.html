@@ -40,6 +40,8 @@
       const charge = await window.electron.getCharge();
 
       document.getElementById("charge").innerText = `${charge}%`;
+
+      if (charge === "100.0") window.electron.notify();
     };
 
     getCharge();
