@@ -9,10 +9,6 @@ jobs:
         with:
           registry-url: "https://registry.npmjs.org"
       - run: npm ci
-      - run: npm run build
+      - run: npm run release
         env:
           GITHUB_TOKEN: ${{ secrets.TOKEN }}
-      - uses: actions/upload-artifact@v4.4.3
-        with:
-          name: dist
-          path: dist/*.exe

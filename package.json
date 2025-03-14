@@ -6,7 +6,8 @@
   "author": "",
   "scripts": {
     "start": "electron .",
-    "build": "electron-builder --publish always"
+    "build": "electron-builder",
+    "release": "electron-builder"
   },
   "dependencies": {
     "usb": "2.13.0"
