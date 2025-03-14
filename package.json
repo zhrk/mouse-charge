@@ -6,14 +6,15 @@
   "author": "",
   "scripts": {
     "start": "electron .",
-    "build": "electron-builder"
+    "build": "electron-builder --publish always"
   },
   "dependencies": {
     "usb": "2.13.0"
   },
   "devDependencies": {
     "electron": "30.0.9",
-    "electron-builder": "24.13.3"
+    "electron-builder": "24.13.3",
+    "electron-updater": "6.3.9"
   },
   "build": {
     "electronLanguages": [

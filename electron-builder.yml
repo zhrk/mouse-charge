@@ -1,0 +1,8 @@
+appId: com.mycompany.myapp
+productName: MyApp
+directories:
+  output: dist
+publish:
+  provider: github
+  owner: zhrk
+  repo: mouse-charge
