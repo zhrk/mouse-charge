@@ -1,6 +1,20 @@
 const { app, BrowserWindow, ipcMain, Notification } = require("electron");
 const path = require("node:path");
 const getCharge = require("./getCharge");
+const { autoUpdater } = require("electron-updater");
+
+// Auto-update event listeners
+autoUpdater.on("update-available", () => {
+  mainWindow.webContents.send("update-available");
+});
+
+autoUpdater.on("update-downloaded", () => {
+  mainWindow.webContents.send("update-downloaded");
+});
+
+ipcMain.on("restart-app", () => {
+  autoUpdater.quitAndInstall();
+});
 
 const electronFilesPath = path.join(process.cwd(), `.electron`);
 
