@@ -31,7 +31,7 @@ function createWindow() {
     webPreferences: {
       preload: path.join(__dirname, "preload.js"),
     },
-    backgroundColor: "#555555",
+    backgroundColor: "#111111",
     titleBarStyle: "hidden",
     titleBarOverlay: {
       color: "#111111",
