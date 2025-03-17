@@ -14,7 +14,7 @@ jobs:
       - run: npm version patch -m "Bump version to %s [skip ci]"
       - run: git push --follow-tags origin main
         env:
-          GITHUB_TOKEN: ${{ secrets.TOKEN }}
+          GH_PAT: ${{ secrets.TOKEN }}
       - run: npm ci
       - run: npm run release
         env:
