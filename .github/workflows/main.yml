@@ -1,5 +1,7 @@
 name: Build Electron App
 on: push
+permissions:
+  contents: write
 jobs:
   build:
     runs-on: windows-latest
@@ -15,7 +17,7 @@ jobs:
       - run: git push --follow-tags origin main
         env:
           GH_PAT: ${{ secrets.TOKEN }}
-      - run: npm ci
-      - run: npm run release
-        env:
-          GITHUB_TOKEN: ${{ secrets.TOKEN }}
+      # - run: npm ci
+      # - run: npm run release
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.TOKEN }}
