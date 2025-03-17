@@ -8,6 +8,17 @@ jobs:
       - uses: actions/setup-node@v4.0.2
         with:
           registry-url: "https://registry.npmjs.org"
+      - run: cat ./package.json
+      - uses: "phips28/gh-action-bump-version@master"
+        with:
+          major-wording: ""
+          minor-wording: ""
+          patch-wording: ""
+          rc-wording: ""
+        env:
+          GITHUB_TOKEN: ${{ secrets.TOKEN }}
+          GITHUB_USER: ${{ secrets.NAME }}
+          GITHUB_EMAIL: ${{ secrets.EMAIL }}
       - run: npm ci
       - run: npm run release
         env:
