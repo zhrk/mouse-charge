@@ -31,6 +31,13 @@
     "win": {
       "target": "portable",
       "artifactName": "Mouse Charge.exe"
-    }
+    },
+    "publish": [
+      {
+        "provider": "github",
+        "owner": "zhrk",
+        "repo": "mouse-charge"
+      }
+    ]
   }
 }
