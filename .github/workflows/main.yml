@@ -12,6 +12,8 @@ jobs:
       #     git config --global user.name "${{ secrets.NAME }}"
       #     git config --global user.email "${{ secrets.EMAIL }}"
       - run: npm version patch -m "Bump version to %s [skip ci]"
+        env:
+          GITHUB_TOKEN: ${{ secrets.TOKEN }}
       - run: git push --follow-tags origin main
         env:
           GITHUB_TOKEN: ${{ secrets.TOKEN }}
