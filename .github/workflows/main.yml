@@ -14,6 +14,8 @@ jobs:
       - run: npm version patch -m "Bump version to %s [skip ci]"
       - run: npm version patch -m "Bump version to %s [skip ci]"
       - run: git push --follow-tags
+        env:
+          GITHUB_TOKEN: ${{ secrets.TOKEN }}
       - run: npm ci
       - run: npm run release
         env:
