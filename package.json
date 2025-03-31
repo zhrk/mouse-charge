@@ -18,6 +18,7 @@
     "electron-builder": "24.13.3"
   },
   "build": {
+    "appId": "com.zhrk.mousecharge",
     "electronLanguages": [
       "en_US"
     ],
