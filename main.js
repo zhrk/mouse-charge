@@ -1,19 +1,44 @@
-const { app, BrowserWindow, ipcMain, Notification } = require("electron");
+const {
+  app,
+  BrowserWindow,
+  ipcMain,
+  Notification,
+  dialog,
+} = require("electron");
 const path = require("node:path");
 const getCharge = require("./getCharge");
 const { autoUpdater } = require("electron-updater");
 
-// Auto-update event listeners
+autoUpdater.autoDownload = false;
+
 autoUpdater.on("update-available", () => {
-  mainWindow.webContents.send("update-available");
+  dialog
+    .showMessageBox({
+      type: "info",
+      title: "Update Available",
+      message: "A new version is available. Do you want to update now?",
+      buttons: ["Yes", "No"],
+    })
+    .then((result) => {
+      if (result.response === 0) {
+        autoUpdater.downloadUpdate();
+      }
+    });
 });
 
 autoUpdater.on("update-downloaded", () => {
-  mainWindow.webContents.send("update-downloaded");
-});
-
-ipcMain.on("restart-app", () => {
-  autoUpdater.quitAndInstall();
+  dialog
+    .showMessageBox({
+      type: "info",
+      title: "Update Ready",
+      message: "Install and restart now?",
+      buttons: ["Yes", "Later"],
+    })
+    .then((result) => {
+      if (result.response === 0) {
+        autoUpdater.quitAndInstall();
+      }
+    });
 });
 
 const electronFilesPath = path.join(process.cwd(), `.electron`);
@@ -31,7 +56,7 @@ function createWindow() {
     webPreferences: {
       preload: path.join(__dirname, "preload.js"),
     },
-    backgroundColor: "#555555",
+    backgroundColor: "#111111",
     titleBarStyle: "hidden",
     titleBarOverlay: {
       color: "#111111",
@@ -45,6 +70,8 @@ function createWindow() {
 }
 
 app.whenReady().then(() => {
+  autoUpdater.checkForUpdates();
+
   createWindow();
 
   const notification = new Notification({
