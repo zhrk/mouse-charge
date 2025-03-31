@@ -9,36 +9,8 @@ const path = require("node:path");
 const getCharge = require("./getCharge");
 const { autoUpdater } = require("electron-updater");
 
-autoUpdater.autoDownload = false;
-
-autoUpdater.on("update-available", () => {
-  dialog
-    .showMessageBox({
-      type: "info",
-      title: "Update Available",
-      message: "A new version is available. Do you want to update now?",
-      buttons: ["Yes", "No"],
-    })
-    .then((result) => {
-      if (result.response === 0) {
-        autoUpdater.downloadUpdate();
-      }
-    });
-});
-
 autoUpdater.on("update-downloaded", () => {
-  dialog
-    .showMessageBox({
-      type: "info",
-      title: "Update Ready",
-      message: "Install and restart now?",
-      buttons: ["Yes", "Later"],
-    })
-    .then((result) => {
-      if (result.response === 0) {
-        autoUpdater.quitAndInstall();
-      }
-    });
+  autoUpdater.quitAndInstall();
 });
 
 const electronFilesPath = path.join(process.cwd(), `.electron`);
@@ -56,7 +28,7 @@ function createWindow() {
     webPreferences: {
       preload: path.join(__dirname, "preload.js"),
     },
-    backgroundColor: "#555555",
+    backgroundColor: "#111111",
     titleBarStyle: "hidden",
     titleBarOverlay: {
       color: "#111111",
@@ -69,8 +41,10 @@ function createWindow() {
   win.loadFile("index.html");
 }
 
-app.whenReady().then(() => {
-  autoUpdater.checkForUpdates();
+app.whenReady().then(async () => {
+  const response = await autoUpdater.checkForUpdates();
+
+  if (response.isUpdateAvailable) return;
 
   createWindow();
 
