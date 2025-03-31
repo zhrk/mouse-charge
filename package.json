@@ -28,10 +28,6 @@
       "package.json",
       "index.html"
     ],
-    "win": {
-      "target": "portable",
-      "artifactName": "Mouse Charge.exe"
-    },
     "publish": [
       {
         "provider": "github",
