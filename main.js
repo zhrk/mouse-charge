@@ -28,7 +28,7 @@ function createWindow() {
     webPreferences: {
       preload: path.join(__dirname, "preload.js"),
     },
-    backgroundColor: "#555555",
+    backgroundColor: "#111111",
     titleBarStyle: "hidden",
     titleBarOverlay: {
       color: "#111111",
@@ -44,7 +44,7 @@ function createWindow() {
 app.whenReady().then(async () => {
   const response = await autoUpdater.checkForUpdates();
 
-  if (response.isUpdateAvailable) return;
+  if (response && response.isUpdateAvailable) return;
 
   createWindow();
 
